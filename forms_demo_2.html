@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Notifications Style 2</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="formStyle.css" rel="stylesheet">
 <script src="formValidationTwo.js"></script> 
 </head>
   <body>
@@ -17,17 +18,18 @@
 <br role="none"/>
 
 <form name="petForm" aria-labelledby="mainHeading" action="thankyou.html" onSubmit="return formValidation();" novalidate>
-<div id="formErrors" tabindex="0" class="col-md-6">
-<h2 id="errHeading"></h2>
-<ul id="formErrList" aria-labelledby="errHeading"></ul>
-</div>  
 
 <div class="form-group">
     <label for= "petName">Pet's name</label>
     <input type="name" class="form-control" id= "petName" aria-describedby="petNameHintText petNameError" placeholder= "Enter your pet's name" required>
-    <small id= "petNameHintText" class="form-text text-muted">The pet’s name must be longer than 5 characters.</small>
-<span><p id="petNameError" class="errText"></p></span>  
+<span>
+    <img src="info.png" alt=""/><span id= "petNameHintText" " style="color:#0469c7;">The pet&rsquo;s name must be longer than 5 characters.</span>
+</span>
+<br/>
+<span id="petNameError" class="petNameError" style="display:none;"><img src="redalert.png" alt=""><span class="errText">Error: The pet&rsquo;s name is too short.</span></span>  
 </div>
+<br role="none"/>
+
   <div class="form-group">
     <label for="petType">Pet type</label>
     <select class="form-control" id="petType" required aria-describedby="petTypeError">
@@ -37,14 +39,19 @@
       <option value="3">Dog</option>
       <option value="4">Goat</option>
     </select>
-<span><p id="petTypeError" class="errText"></p></span>  
+<span id="petTypeError" class="petTypeError" style="display:none;" ><img src="redalert.png" alt=""><span class="errText">Error: You must select an option.</span></span>  
   
   </div>
+<br role="none"/>
   <div class="form-check">
+<label class="form-check-label" >
     <input type="checkbox" class="form-check-input" id="confirm" aria-describedby="confirmError" required>
-    <label class="form-check-label" for="confirm">I confirm that the details submitted are correct to the best of my knowledge.</label>
-  <span><p id="confirmError" class="errText"></p></span>  
+I confirm that the details submitted are correct to the best of my knowledge.</label>
 </div>
+<div >
+<span id="confirmError" class="confirmError" style="display:none;"><img src="redalert.png" alt=""><span class="errText">Error: You must confirm your pet&rsquo;s information.</span></span>  
+</div>
+
   <button type="submit" class="btn btn-primary">Submit</button>
 
 <div id="formErrors2">

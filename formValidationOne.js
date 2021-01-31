@@ -1,3 +1,4 @@
+
 function formValidation()
 {
 var errors = "";
@@ -7,32 +8,61 @@ var confirm = document.petForm.confirm;
 
 document.getElementById("errHeading").innerHTML = "";
 document.getElementById("formErrList").innerHTML = errors;
+document.getElementById("formErrors").tabindex = "-1";
+document.getElementById("formErrors").style.display = "none";
+document.getElementById("errParentDiv").style.display ="none";
+
+var i;
+var petNameErrorNode = document.getElementsByClassName("petNameError");
+for( i = 0; i < petNameErrorNode.length ; i++ ) {
+ petNameErrorNode[i].style.display = "none";
+}
+var petTypeErrorNode = document.getElementsByClassName("petTypeError");
+for( i = 0; i < petTypeErrorNode.length ; i++ ) {
+ petTypeErrorNode[i].style.display = "none";
+}
+var confirmErrorNode = document.getElementsByClassName("confirmError");
+for( i = 0; i < confirmErrorNode.length ; i++ ) {
+ confirmErrorNode[i].style.display = "none";
+}
 
 if(!petNameValidation(petName, 5)) {
-errors = errors + "<li><a href=#petName>The pet’s name is too short.</a></li>";
+errors = errors + "<li><a href=#petName>The pet&rsquo;s name is too short.</a></li>";
+for( i = 0; i < petNameErrorNode.length ; i++ ) {
+ petNameErrorNode[i].style.display = "";
+}
 }
 if(!petTypeValidation(petType)) {
 errors = errors + "<li><a href=#petType>You must select and option.</a></li>";
+for( i = 0; i < petTypeErrorNode.length ; i++ ) {
+ petTypeErrorNode[i].style.display = "";
+}
 }
 if(!confirmValidation(confirm)) {
-errors = errors + "<li><a href=#confirm>You must confirm your pet’s information.</a></li>";
+errors = errors + "<li><a href=#confirm>You must confirm your pet&rsquo;s information.</a></li>";
+for( i = 0; i < confirmErrorNode.length ; i++ ) {
+ confirmErrorNode[i].style.display = "";
+}
 }
 if(errors != "") {
 document.getElementById("errHeading").innerHTML = "The form contains errors:";
 document.getElementById("formErrList").innerHTML = errors;
+document.getElementById("formErrors").style.display = "";
+document.getElementById("formErrors").tabindex = "0";
 document.getElementById("formErrors").focus();
+document.getElementById("errParentDiv").style.display = "";
 return false;
 }
 return true;
 }
 
+
+
 function petNameValidation(petName, minlength)
 {
-document.getElementById("petNameError").innerHTML = null;
 var petNameLen = petName.value.length;
 if (petNameLen < minlength)
 {
-document.getElementById("petNameError").innerHTML = "Error: The pet’s name is too short.";
 return false;
 }
 return true;
@@ -40,23 +70,21 @@ return true;
 
 function petTypeValidation(petType)
 {
-document.getElementById("petTypeError").innerHTML = null;
 var petTypeValue = petType.value;
 if (petTypeValue <= 0)
 {
-document.getElementById("petTypeError").innerHTML = "Error: You must select and option.";
 return false;
 }
 return true;
 }
 function confirmValidation(confirm)
 {
-document.getElementById("confirmError").innerHTML = null;
 var confirmChd = confirm.checked;
 if (confirmChd == false)
 {
-document.getElementById("confirmError").innerHTML = "Error: You must confirm your pet’s information.";
 return false;
 }
 return true;
 }
+
+
